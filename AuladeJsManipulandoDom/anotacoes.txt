@@ -1,0 +1,5 @@
+-manipular o dom é mais pesado 
+-muito custoso em termos performatico 
+-querySelector:traz apenas um elemento
+-querySelectorAll:traz varios elementos,normalmente do tipo node list(em apis)
+-textContent = altera o conteudo do elemento

@@ -1,0 +1,36 @@
+body {
+  padding: 10px;
+  /* definidno margem */
+}
+h1 {
+  text-align: center;
+  font-size: 2rem;
+  /* colocando o elemento em negrito  */
+  font-weight: bold;
+}
+
+.personal-data {
+  margin: 10px;
+  display: flex;
+  /* alinhando em linha */
+  flex-direction: row;
+  /* alinhando tds os itens */
+  align-items: center;
+}
+
+#dados {
+  margin-left: 30px;
+  list-style-type: disc;
+}
+
+table,
+tr,
+td,
+td {
+  padding: 5px;
+  border: 1px solid gray;
+}
+
+th {
+  background-color: #dddd;
+}
