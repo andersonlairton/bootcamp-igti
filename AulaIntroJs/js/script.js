@@ -52,3 +52,37 @@ b = 7;
 var resposta = a > b ? 'maior' : a < b ? 'menor' : 'igual';
 
 console.log(resposta);
+
+//while
+//somando com while
+
+var numAtual = 1,
+  somatorio = 0;
+
+while (numAtual <= 100) {
+  somatorio += numAtual;
+  numAtual++;
+}
+
+console.log('val somatorio ' + somatorio);
+
+//do-while
+
+var numAtual = 1,
+  somatorio = 0;
+
+do {
+  //declaranado a função,no do ele executa pelo menos uma vez
+  somatorio += numAtual;
+  numAtual++;
+} while (numAtual <= 10); //fazendo o teste da condição
+
+console.log(somatorio);
+
+//for
+somatorio = 0;
+for (numAtual = 1; numAtual <= 10; numAtual++) {
+  somatorio += numAtual;
+}
+
+console.log(somatorio);
