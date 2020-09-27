@@ -1,0 +1,5 @@
+-js é uma linguagem de tipagem fraca
+-null é definido pelo programador
+-array em js é considerado um objeto 
+- objeto é identificado por chaves
+-quando se usa === ,é feita a comparação com o tipo da variavel
