@@ -1,0 +1,7 @@
+-css = cascade style sheets(folhas de estilo em cascata)
+-elemento:propria tab
+-classe agrupa elementos semelhantes(representa . )
+-id : elementos unicos(representa #)
+#css representa
+-tecnica para zera padronização de navegadores de css
+-frame ja faz isso 
