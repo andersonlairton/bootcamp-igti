@@ -1,0 +1,7 @@
+-html é uma linguagem de marcação
+-escrito de forma declarativa,escreve o que tem que ser feito (programação declarativa)
+-os conteudos sao definidos por tags 
+-podem possuir atributos que modificam o elemento(ids,classes) 
+-atributos possuem valores
+-a imortancia dele é semantica,de descrição de conteudos
+-div é um elemento agrupador 
