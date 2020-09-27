@@ -45,3 +45,10 @@ switch (dia) {
 }
 
 console.log(r);
+
+//operador ternario
+a = 71;
+b = 7;
+var resposta = a > b ? 'maior' : a < b ? 'menor' : 'igual';
+
+console.log(resposta);
