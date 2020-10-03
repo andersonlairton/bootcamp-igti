@@ -38,6 +38,19 @@ function activateInput() {
 }
 
 function render(){
+    function createDeleteButton(index) {
+        function deleteName(){
+            globalNames.splice(index,1);//removendo o indice
+            render();
+        }
+        var button = document.createElement('button');
+        button.classList.add('deleteButton');
+        button.textContent = 'x';
+
+        button.addEventListener('click',deleteName);
+
+        return button
+    }
     // renderizadndo campos e a lista
     var divNames = document.querySelector("#names");
     divNames.innerHTML = '';
@@ -54,7 +67,14 @@ function render(){
     for(var i=0;i<globalNames.length;i++){
         var currentName = globalNames[i];
         var li = document.createElement('li');
-        li.textContent = currentName;
+        var span = document.createElement('span');
+        var button = createDeleteButton(i);
+
+        span.textContent = currentName;
+        
+        li.appendChild(button);//adicionando o botao na li
+        li.appendChild(span);
+        // li.textContent = currentName;
         ul.appendChild(li);
     }
 
