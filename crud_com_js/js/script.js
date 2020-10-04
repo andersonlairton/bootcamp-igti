@@ -1,89 +1,107 @@
-window.addEventListener("load",start);
+window.addEventListener("load", start);
 
-var globalNames = ['um','dois','tres','quatro'];
-var inputName = document.querySelector('#inputName');
+var globalNames = ["um", "dois", "tres", "quatro"];
+var inputName = document.querySelector("#inputName");
+var isEditing = false;
 
 function start() {
-    render();
-    console.log('start');
-    preventFormSubmit();//retirnado o recarregamento da pagina
-    inputName = document.querySelector('#inputName');
-    activateInput();//função para ja carregar o codigo focando no input
-
+  render();
+  console.log("start");
+  preventFormSubmit(); //retirnado o recarregamento da pagina
+  inputName = document.querySelector("#inputName");
+  activateInput(); //função para ja carregar o codigo focando no input
 }
 
 function preventFormSubmit() {
-    function handleFormSubmit(event){
-        event.preventDefault();
-    }
-    var form = document.querySelector("form");
-    form.addEventListener('submit',handleFormSubmit);//tratando o evento submit com uma função
-
+  function handleFormSubmit(event) {
+    event.preventDefault();
+  }
+  var form = document.querySelector("form");
+  form.addEventListener("submit", handleFormSubmit); //tratando o evento submit com uma função
 }
 
 function activateInput() {
-    function insertName(newName) {
-        globalNames.push(newName);
-        render();
-    }
-    function handleTyping(event) {
-         if (event.key==='Enter') {//capturnado a tecla digitada
-            // var typeName = event.target.value;//pegando o valor do elemento que foi mexido
-            insertName(event.target.value);
-        }
+  function insertName(newName) {
+    globalNames.push(newName);
+    render();
+  }
+  function handleTyping(event) {
+    if (event.key === "Enter") {
+      //capturnado a tecla digitada
+      // var typeName = event.target.value;//pegando o valor do elemento que foi mexido
+      if (isEditing) {
+      } else {
+        insertName(event.target.value);
+      }
 
+      isEditing = false;
     }
-    inputName.addEventListener("keyup",handleTyping);
-    inputName.focus();
+  }
+
+  inputName.addEventListener("keyup", handleTyping);
+  inputName.focus();
 }
 
-function render(){
-    function createDeleteButton(index) {
-        function deleteName(){
-            globalNames.splice(index,1);//removendo o indice
-            render();
-        }
-        var button = document.createElement('button');
-        button.classList.add('deleteButton');
-        button.textContent = 'x';
-
-        button.addEventListener('click',deleteName);
-
-        return button
+function render() {
+  function createDeleteButton(index) {
+    function deleteName() {
+      globalNames.splice(index, 1); //removendo o indice
+      render();
     }
-    // renderizadndo campos e a lista
-    var divNames = document.querySelector("#names");
-    divNames.innerHTML = '';
-    //criando elementos html
-    var ul = document.createElement('ul');
-    // var li1 = document.createElement('li');
-    // var li2 = document.createElement('li');
-    // li1.textContent= 'primeiro';
-    // li2.textContent = 'segundo';
+    var button = document.createElement("button");
+    button.classList.add("deleteButton");
+    button.textContent = "x";
 
-    // ul.appendChild(li1);
-    // ul.appendChild(li2);//adicionando os elementos aoa elementopai
+    button.addEventListener("click", deleteName);
 
-    for(var i=0;i<globalNames.length;i++){
-        var currentName = globalNames[i];
-        var li = document.createElement('li');
-        var span = document.createElement('span');
-        var button = createDeleteButton(i);
+    return button;
+  }
 
-        span.textContent = currentName;
-        
-        li.appendChild(button);//adicionando o botao na li
-        li.appendChild(span);
-        // li.textContent = currentName;
-        ul.appendChild(li);
+  function createspan(name) {
+    function editItem() {
+      inputName.value = name;
+      inputName.focus();
+      isEditing = true;
     }
 
-    divNames.appendChild(ul);//criadno a div
-    clearInput();
+    var span = document.createElement("span");
+    span.classList.add("clickable");
+    span.textContent = name;
+
+    span.addEventListener("click", editItem);
+
+    return span;
+  }
+  // renderizadndo campos e a lista
+  var divNames = document.querySelector("#names");
+  divNames.innerHTML = "";
+  //criando elementos html
+  var ul = document.createElement("ul");
+  // var li1 = document.createElement('li');
+  // var li2 = document.createElement('li');
+  // li1.textContent= 'primeiro';
+  // li2.textContent = 'segundo';
+
+  // ul.appendChild(li1);
+  // ul.appendChild(li2);//adicionando os elementos aoa elementopai
+
+  for (var i = 0; i < globalNames.length; i++) {
+    var currentName = globalNames[i];
+    var li = document.createElement("li");
+    var button = createDeleteButton(i);
+    var span = createspan(currentName);
+
+    li.appendChild(button); //adicionando o botao na li
+    li.appendChild(span);
+    // li.textContent = currentName;
+    ul.appendChild(li);
+  }
+
+  divNames.appendChild(ul); //criadno a div
+  clearInput();
 }
 
-function clearInput(){
-    inputName.value = '';
-    inputName.focus();
+function clearInput() {
+  inputName.value = "";
+  inputName.focus();
 }
-
