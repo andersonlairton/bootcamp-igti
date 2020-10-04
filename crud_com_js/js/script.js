@@ -3,6 +3,7 @@ window.addEventListener("load", start);
 var globalNames = ["um", "dois", "tres", "quatro"];
 var inputName = document.querySelector("#inputName");
 var isEditing = false;
+var currentIndex = null;
 
 function start() {
   render();
@@ -23,18 +24,33 @@ function preventFormSubmit() {
 function activateInput() {
   function insertName(newName) {
     globalNames.push(newName);
-    render();
   }
+
+  function updateName(newName) {
+    globalNames[currentIndex] = newName;//alterando o valor na poição do array 
+  }
+
   function handleTyping(event) {
+    var hasText = !!event.target.value && event.target.value.trim() !== ""; //!! ->se pode se tornar verdadeiro,torna verdade,ou falso se nao existir,trim retira os espaçoes em branco
+
+    if (!hasText) {
+      clearInput();
+      return;
+    }
+
     if (event.key === "Enter") {
       //capturnado a tecla digitada
       // var typeName = event.target.value;//pegando o valor do elemento que foi mexido
       if (isEditing) {
+        console.log("linha 39");
+        updateName(event.target.value);
       } else {
         insertName(event.target.value);
       }
 
+      render();
       isEditing = false;
+      clearInput();
     }
   }
 
@@ -57,11 +73,12 @@ function render() {
     return button;
   }
 
-  function createspan(name) {
+  function createspan(name,index) {
     function editItem() {
       inputName.value = name;
       inputName.focus();
       isEditing = true;
+      currentIndex = index;
     }
 
     var span = document.createElement("span");
@@ -89,7 +106,7 @@ function render() {
     var currentName = globalNames[i];
     var li = document.createElement("li");
     var button = createDeleteButton(i);
-    var span = createspan(currentName);
+    var span = createspan(currentName,i);
 
     li.appendChild(button); //adicionando o botao na li
     li.appendChild(span);
