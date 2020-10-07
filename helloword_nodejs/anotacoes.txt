@@ -1,0 +1,9 @@
+criando um projeto node:npm init 
+colocando npm init -y ele ja gera tudo automatico e responde sim para tdas as perguntas
+//definie o ponto de entrada da app é na tag main
+
+node <nome do arquivo> executa o arquivo js
+
+para se debugar:
+
+pode se colocar o break point e ao se clicar em run.o proprio vscode consegue fazer o debug
