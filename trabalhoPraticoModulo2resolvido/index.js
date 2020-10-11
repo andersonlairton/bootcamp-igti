@@ -41,6 +41,18 @@ async function getCitiesCount(uf) {
   return cities.length;
 }
 
+async function readFile(uf) {
+  if (!uf) {
+    const states = JSON.parse(
+      await fs.readFile('./cidades-estados-brasil-json/Estados.json')
+    );
+    return states;
+  } else {
+    const states = JSON.parse(await fs.readFile(`./states/${uf}.json`));
+    return states;
+  }
+}
+
 async function getStatesWithMoreOrLessCities(more) {
   const states = JSON.parse(
     await fs.readFile('./cidades-estados-brasil-json/Estados.json')
