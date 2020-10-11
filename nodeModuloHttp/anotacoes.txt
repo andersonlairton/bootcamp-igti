@@ -1,0 +1,2 @@
+# este modulo é um modulo nativo para receber requisições
+# nodemon -g instala globalmente o nodemon que deixa a aplicação autualizando automaticamente,ele é semelhante ao live server
