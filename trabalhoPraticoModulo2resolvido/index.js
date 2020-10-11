@@ -11,7 +11,8 @@ init();
 async function init() {
   await createFiles();
   // await getCitiesCount('MG');
-  await getStatesWithMoreCities();
+  await getStatesWithMoreOrLessCities(true);
+  await getStatesWithMoreOrLessCities(false);
 }
 async function createFiles() {
   let data = await fs.readFile('./cidades-estados-brasil-json/Estados.json');
@@ -40,7 +41,7 @@ async function getCitiesCount(uf) {
   return cities.length;
 }
 
-async function getStatesWithMoreCities() {
+async function getStatesWithMoreOrLessCities(more) {
   const states = JSON.parse(
     await fs.readFile('./cidades-estados-brasil-json/Estados.json')
   );
@@ -60,6 +61,13 @@ async function getStatesWithMoreCities() {
   });
   const result = [];
   list.slice(0, 5); //mostrando apenas 5 elementos do array
-  list.slice(0, 5).forEach((item) => result.push(item.uf + '-' + item.count));
+
+  if (more) {
+    list.slice(0, 5).forEach((item) => result.push(item.uf + '-' + item.count));
+  } else {
+    //listando os 5 menos cidades
+    list.slice(-5).forEach((item) => result.push(item.uf + '-' + item.count));
+  }
+
   console.log(result);
 }
