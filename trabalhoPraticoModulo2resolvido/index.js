@@ -11,8 +11,11 @@ init();
 async function init() {
   await createFiles();
   // await getCitiesCount('MG');
-  await getStatesWithMoreOrLessCities(true);
-  await getStatesWithMoreOrLessCities(false);
+  // await getStatesWithMoreOrLessCities(true);
+  // await getStatesWithMoreOrLessCities(false);
+  // console.log(await getBiggerName('MG'));
+  getBiggerNameCities();
+  // await getBiggerName();
 }
 async function createFiles() {
   let data = await fs.readFile('./cidades-estados-brasil-json/Estados.json');
@@ -82,4 +85,40 @@ async function getStatesWithMoreOrLessCities(more) {
   }
 
   console.log(result);
+}
+
+async function getBiggerNameCities() {
+  const states = await readFile();
+  // console.log(states);
+  // return;
+  const result = [];
+  for (let state of states) {
+    // console.log(state.Sigla);
+    const city = await getBiggerName(state.Sigla);
+    // console.log(city);
+    // return;
+    result.push(city.Nome + '-' + state.Sigla);
+  }
+  // return result;
+  console.log(result);
+}
+
+async function getBiggerName(uf) {
+  const cities = await readFile(uf);
+
+  // let maxSize = 0;
+  // let city;
+  let result;
+
+  cities.forEach((city) => {
+    // console.log(city);
+    if (!result) result = city;
+    else if (city.Nome.length > result.Nome.length) result = city;
+    else if (
+      city.Nome.length === result.length &&
+      city.Nome.toLowCase() < result.Nome.toLowCase()
+    )
+      result = city;
+  });
+  return result;
 }
