@@ -7,9 +7,11 @@ import { promises as fs } from 'fs';
 //     // console.log(JSON.parse(data));
 //     const states = JSON.parse(data); //guardando os estados
 //   });
-
-createFiles();
-
+init();
+async function init() {
+  await createFiles();
+  await getCitiesCount('MG');
+}
 async function createFiles() {
   let data = await fs.readFile('./cidades-estados-brasil-json/Estados.json');
   const states = JSON.parse(data);
@@ -25,5 +27,13 @@ async function createFiles() {
       JSON.stringify(stateCities)
     );
   }
-  console.log(cities);
+  // console.log(cities);
+}
+
+//criando retorno para a quantidade de cidades que o estado possui
+async function getCitiesCount(uf) {
+  const data = await fs.readFile(`./states/${uf}.json`); //lendo os arquivos da pasta state com base na uf passada como paramentro
+  const cities = JSON.parse(data);
+
+  console.log(cities.length);
 }
