@@ -1,0 +1,2 @@
+# read line permite ler as entradas do usuario
+# 
