@@ -15,7 +15,9 @@ async function init() {
   // await getStatesWithMoreOrLessCities(false);
   // console.log(await getBiggerName('MG'));
   //  console.log(getBiggerNameCities());
-  console.log(await getSmalerNameCities());
+  // console.log(await getSmalerNameCities());
+  // console.log(await getBiggerCityName());
+  getBiggerCityName();
   // await getBiggerName();
 }
 async function createFiles() {
@@ -157,4 +159,25 @@ async function getSmallerName(uf) {
       result = city;
   });
   return result;
+}
+
+async function getBiggerCityName() {
+  const states = await readFile();
+  const list = [];
+
+  for (let state of states) {
+    const city = await getBiggerName(state.Sigla);
+    list.push({ name: city.Nome, uf: state.Sigla });
+  }
+
+  const result = list.reduce((prev, current) => {
+    if (prev.name.length > current.name.length) return prev;
+    else if (prev.name.length < current.name.length) return current;
+    else
+      return prev.name.toLowerCase() < current.name.toLowerCase()
+        ? prev
+        : current;
+  });
+  // console.log(result.name + '-' + result.uf);
+  return result.name + '-' + result.uf;
 }
