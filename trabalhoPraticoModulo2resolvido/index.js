@@ -17,7 +17,8 @@ async function init() {
   //  console.log(getBiggerNameCities());
   // console.log(await getSmalerNameCities());
   // console.log(await getBiggerCityName());
-  getBiggerCityName();
+  getBiggerorSmallerCityName(true);
+  getBiggerorSmallerCityName(false);
   // await getBiggerName();
 }
 async function createFiles() {
@@ -161,23 +162,37 @@ async function getSmallerName(uf) {
   return result;
 }
 
-async function getBiggerCityName() {
+async function getBiggerorSmallerCityName(bigger) {
   const states = await readFile();
   const list = [];
 
   for (let state of states) {
-    const city = await getBiggerName(state.Sigla);
+    let city;
+    if (bigger) {
+      city = await getBiggerName(state.Sigla);
+    } else {
+      city = await getSmallerName(state.Sigla);
+    }
     list.push({ name: city.Nome, uf: state.Sigla });
   }
 
   const result = list.reduce((prev, current) => {
-    if (prev.name.length > current.name.length) return prev;
-    else if (prev.name.length < current.name.length) return current;
-    else
-      return prev.name.toLowerCase() < current.name.toLowerCase()
-        ? prev
-        : current;
+    if (bigger) {
+      if (prev.name.length > current.name.length) return prev;
+      else if (prev.name.length < current.name.length) return current;
+      else
+        return prev.name.toLowerCase() < current.name.toLowerCase()
+          ? prev
+          : current;
+    } else {
+      if (prev.name.length < current.name.length) return prev;
+      else if (prev.name.length > current.name.length) return current;
+      else
+        return prev.name.toLowerCase() < current.name.toLowerCase()
+          ? prev
+          : current;
+    }
   });
-  // console.log(result.name + '-' + result.uf);
+  console.log(result.name + '-' + result.uf);
   return result.name + '-' + result.uf;
 }
