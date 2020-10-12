@@ -1,0 +1,3 @@
+#express é um frame do node js
+#para instalar o express tem qe se digitar o npm install express
+#ele entra no projeto como uma dependencia 
