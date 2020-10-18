@@ -1,0 +1,8 @@
+instalando estenções
+node acima da versao por ele apresentada
+[A#node acima da versao instalada,apenas por curiosidade minha
+#instalar estenção es7
+#instalar o yarn(verificar se o que eu tenho na maquina ainda é compativel [A[B)
+#npx baixa o pacote quando é necessario e depois remove ele
+#não instalei o comander,achei desnecessario neste primeiro momento
+#comander é interessante por poder se ter varias abas 
