@@ -1,0 +1,10 @@
+# react é uma biblioteca js
+# não é um framework
+# ele é declarativo,trabalha com estado 
+# manipula o dom de forma performatica
+# create-react-app é o comando para se criar um projeto react do zero
+# [Anpx create-react-app <nome do projeto é o comando para se criar um projeto react do zero
+#quando se coloca --scripts-version 3.4.1 antes do nome do arquivo,é especificado qual a versao do react a aplicação segue 
+# caso de comando nao reconhecido"[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[C"comando nao reconhecido",executar npm i -g create-react-app pois instala o pacote do react 
+# yarn start é o comando para se "levantar" o servidor do react
+#
